@@ -1,0 +1,9 @@
+src/
+*.rej
+*.o
+*.1
+*.bak
+*.orig
+config.h
+dwmblocks/*.bak
+dwmblocks/blocks.h

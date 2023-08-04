@@ -16,12 +16,12 @@ enum { ColFg, ColBg, ColBorder }; /* Clr scheme index */
 typedef XftColor Clr;
 
 typedef struct {
-	unsigned int w, h;
-	Display *dpy;
+	unsigned int w, h; // Width and height of the screen / Resolution
+	Display *dpy; // Display from XOpenDisplay
 	int screen;
-	Window root;
-	Drawable drawable;
-	GC gc;
+	Window root; // Window from DefaultRootWindow from xlib
+	Drawable drawable; // I think it is either a window or a Pixmap ID.
+	GC gc; // Graphical context from XCreateGC
 	Clr *scheme;
 	Fnt *fonts;
 } Drw;
@@ -52,7 +52,14 @@ void drw_setscheme(Drw *drw, Clr *scm);
 
 /* Drawing functions */
 void drw_rect(Drw *drw, int x, int y, unsigned int w, unsigned int h, int filled, int invert);
+
+// x, y: position of where to draw
+// w, h: dimensions of the object to draw
+// lpad: the left padding
+// text: The text to draw
+// invert: 
 int drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lpad, const char *text, int invert);
 
 /* Map functions */
+// Draws whatever it is in drw to win.
 void drw_map(Drw *drw, Window win, int x, int y, unsigned int w, unsigned int h);

@@ -390,6 +390,7 @@ drw_map(Drw *drw, Window win, int x, int y, unsigned int w, unsigned int h)
 	if (!drw)
 		return;
 
+  // source: drw->drawable, destination: win (The current window)
 	XCopyArea(drw->dpy, drw->drawable, win, drw->gc, x, y, w, h, x, y);
 	XSync(drw->dpy, False);
 }
